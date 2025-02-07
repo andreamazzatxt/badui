@@ -7,9 +7,10 @@ export default function App() {
   const [isPlaying, setIsPlaying] = useState(false);
 
   const handleStartGame = useCallback(() => {
+    if (isPlaying) return;
     setIsPlaying(true);
     setInputValue("");
-  }, []);
+  }, [isPlaying]);
 
   const handleGameEnd = useCallback(() => {
     setIsPlaying(false);
@@ -26,21 +27,28 @@ export default function App() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
-      <h1 className="text-2xl font-bold mb-4">Insert your phone number</h1>
+      <h1 className="text-2xl font-bold mb-4">Username</h1>
+      <input
+        type="text"
+        className="w-40"
+        style={{ border: "1px solid grey" }}
+        placeholder=""
+      />
+      <h1 className="text-2xl font-bold mb-4">Password</h1>
       <div className="flex items-center space-x-2 mb-4">
         <input
-          type="text"
+          type="password"
           value={inputValue}
           readOnly
           className="w-40"
+          style={{ border: "1px solid grey" }}
           placeholder="Your number"
+          onClick={handleStartGame}
+          onFocus={handleStartGame}
         />
-        <button onClick={handleStartGame} disabled={isPlaying}>
-          {isPlaying ? "inserting..." : inputValue ? "Change" : "Start"}
-        </button>
 
-        {!!inputValue && (
-          <button onClick={() => alert("Calling ... " + inputValue)}>
+        {!!inputValue && !isPlaying && (
+          <button onClick={() => alert("Wrong password!!! " + inputValue)}>
             Confirm
           </button>
         )}

@@ -20,9 +20,9 @@ export default function useSnakeGame(
   }, [gridSize]);
 
   const shuffleFood = useCallback(() => {
-    const numbers: (number | string)[] = Array.from({ length: 11 }, (_, i) => {
-      if (i === 10) return "<";
-      return i;
+    const numbers: (number | string)[] = Array.from({ length: 36 }, (_, i) => {
+      if (i < 10) return i;
+      return String.fromCharCode(65 + i - 10);
     });
     const initialFoods = numbers.map(() => generateFood());
     const shuffledNumbers = numbers.sort(() => Math.random() - 0.5);
