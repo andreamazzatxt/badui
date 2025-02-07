@@ -32,7 +32,7 @@ export default function App() {
         type="text"
         className="w-40"
         style={{ border: "1px solid grey" }}
-        placeholder=""
+        placeholder="Username"
       />
       <h1 className="text-2xl font-bold mb-4">Password</h1>
       <div className="flex items-center space-x-2 mb-4">
@@ -42,7 +42,7 @@ export default function App() {
           readOnly
           className="w-40"
           style={{ border: "1px solid grey" }}
-          placeholder="Your number"
+          placeholder="Your password"
           onClick={handleStartGame}
           onFocus={handleStartGame}
         />
